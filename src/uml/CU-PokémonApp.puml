@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+
+:UsuariApp: as ua
+:BD: as bd
+
+rectangle "PokémonApp" {
+    (Llistar Pokémons) as lp
+    (Veure Pokédex) as vp
+    (Veure detall pokémon) as vd
+    (Afegir pokémon a pokédex) as ap
+    (Treure pokémon de pokédex) as tp
+}
+
+ua --> lp
+ua --> vp
+lp ..> vd : << extend >>
+vp ..> vd : << extend >>
+vd ..> ap : << extend >>
+vd ..> tp : << extend >>
+bd -up-> ap
+bd -left-> tp
+
+@enduml

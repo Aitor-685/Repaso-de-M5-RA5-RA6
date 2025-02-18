@@ -1,0 +1,8 @@
+@startuml
+actor Usuari as u
+boundary Interface as ui
+
+autonumber
+u -> ui : Acció
+|||
+@enduml

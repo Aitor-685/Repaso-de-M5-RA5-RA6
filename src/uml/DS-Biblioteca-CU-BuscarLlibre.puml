@@ -1,0 +1,16 @@
+@startuml
+header CU Buscar Llibre
+
+actor Usuari
+boundary "Sistema de Biblioteca (Interfície UI)" as UI
+control "Controlador de Biblioteca" as Control
+entity "Base de Dades" as DB
+
+Usuari -> UI: Introduir criteris de cerca
+UI -> Control: Enviar criteris de cerca
+Control -> DB: Buscar coincidències
+DB --> Control: Retornar resultats
+Control --> UI: Retornar resultats de la cerca
+UI --> Usuari: Mostrar resultats
+
+@enduml

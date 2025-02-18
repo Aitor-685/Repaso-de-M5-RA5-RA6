@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+
+
+:Jugador: << Gamer >> as J #green;line:green;line.bold;text:green
+actor Administrador as A
+
+rectangle "Sistema de Compra de Skins" {
+    (Comprar Skin) as UC1
+    usecase "Seleccionar Mètode de Pagament" as UC2
+    usecase "Aplicar Descompte" as UC3
+    usecase "Gestionar Inventari" as UC4
+    usecase "Reemborsar Compra" as UC5
+}
+
+J --> UC1 #green
+J --> UC4 #green
+A --> UC4
+A --> UC5
+
+UC1 .> UC2 : <<include>>
+UC1 .> UC3 : <<extend>>
+UC5 .> UC1 : <<extend>>
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+participant Objecte1 as o1
+autonumber
+
+create Objecte2 as o2
+o1 -> o2 : << create >>  crearObjecte2
+o1 -> o2 : << destroy >>
+activate o2
+|||
+deactivate o2
+destroy o2
+@enduml

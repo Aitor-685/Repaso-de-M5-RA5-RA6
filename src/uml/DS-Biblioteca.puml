@@ -1,0 +1,80 @@
+@startuml
+
+== Buscar llibre ==
+actor Usuari
+boundary "Sistema de Biblioteca (Interfície)" as UI
+control "Controlador de Biblioteca" as Control
+entity "Base de Dades" as DB
+
+Usuari -> UI: Introduir criteris de cerca
+UI -> Control: Enviar criteris de cerca
+Control -> DB: Buscar coincidències
+DB -> Control: Retornar resultats
+Control -> UI: Retornar resultats de la cerca
+UI -> Usuari: Mostrar resultats
+
+newpage
+
+== Demanar préstec ==
+actor Usuari
+boundary "Sistema de Biblioteca (Interfície)" as UI
+control "Controlador de Biblioteca" as Control
+entity "Base de Dades" as DB
+control "Gestor de Préstecs" as Gestor
+actor Bibliotecari
+
+Usuari -> UI: Seleccionar llibre per al préstec
+UI -> Control: Enviar sol·licitud de préstec
+Control -> Gestor: Validar disponibilitat
+Gestor -> DB: Consultar estat del llibre
+DB -> Gestor: Retornar disponibilitat
+Gestor -> Bibliotecari: Sol·licitar aprovació
+Bibliotecari -> Gestor: Aprovar/Rebutjar préstec
+Gestor -> DB: Actualitzar estat del préstec
+Gestor -> Control: Retornar estat
+Control -> UI: Mostrar resultat
+UI -> Usuari: Confirmar estat de la sol·licitud
+
+newpage
+
+== Registrar nou llibre ==
+actor Bibliotecari
+boundary "Sistema de Biblioteca (Interfície)" as UI
+control "Controlador de Biblioteca" as Control
+entity "Base de Dades" as DB
+
+Bibliotecari -> UI: Introduir dades del nou llibre
+UI -> Control: Enviar dades del llibre
+Control -> DB: Guardar llibre a la base de dades
+DB -> Control: Confirmar registre
+Control -> UI: Mostrar confirmació
+UI -> Bibliotecari: Confirmar registre
+
+newpage
+
+== Gestionar préstecs ==
+actor Bibliotecari
+boundary "Sistema de Biblioteca (Interfície)" as UI
+control "Controlador de Biblioteca" as Control
+entity "Base de Dades" as DB
+control "Gestor de Préstecs" as Gestor
+
+Bibliotecari -> UI: Consultar préstecs pendents
+UI -> Control: Enviar petició de consulta
+Control -> Gestor: Recuperar préstecs pendents
+Gestor -> DB: Obtenir llista de préstecs
+DB -> Gestor: Retornar llista
+Gestor -> Control: Enviar dades
+Control -> UI: Mostrar resultats
+UI -> Bibliotecari: Visualitzar préstecs pendents
+
+Bibliotecari -> UI: Actualitzar estat d'un préstec
+UI -> Control: Enviar actualització
+Control -> Gestor: Aplicar canvi d'estat
+Gestor -> DB: Modificar estat del préstec
+DB -> Gestor: Confirmar modificació
+Gestor -> Control: Retornar estat actualitzat
+Control -> UI: Mostrar confirmació
+UI -> Bibliotecari: Confirmar actualització
+
+@enduml

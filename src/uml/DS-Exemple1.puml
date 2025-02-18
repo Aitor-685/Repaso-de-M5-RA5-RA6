@@ -1,0 +1,24 @@
+@startuml
+header Diagrama Seqüència CU 1
+
+actor Actor1 <<rol 1>>
+boundary InterfícieGUI
+control Controlador1
+entity Entitat1
+
+Actor1 -> InterfícieGUI : Sel·lecciona opció del menú
+InterfícieGUI -> Controlador1 : Crida funció de l'opció
+Controlador1 -> Entitat1 : Crea objectes de la classe
+create participant Objecte1
+Entitat1 -> Objecte1 : Instancia objecte
+collections ObjectesN
+database BaseDades1
+Entitat1 -> ObjectesN : Instancia llista d'objectes
+activate ObjectesN
+ObjectesN -> Controlador1 : Rep objectes
+Controlador1 -> BaseDades1 : Petició a BD
+deactivate ObjectesN
+' Elimina la MutableList de la RAM
+destroy ObjectesN
+BaseDades1 --> Controlador1 : Retorn de dades asíncron
+@enduml

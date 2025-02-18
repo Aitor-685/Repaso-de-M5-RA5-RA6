@@ -1,0 +1,13 @@
+@startuml
+participant Objecte1 as o1
+participant Objecte2 as o2
+activate o1
+o1 -> o2 : missatge1
+
+activate o2
+create participant Objecte3 as o3
+o2 -> o3 : missatge2
+o3 --> o2 : resposta2
+destroy o3
+o2 --> o1 : resposta1
+@enduml

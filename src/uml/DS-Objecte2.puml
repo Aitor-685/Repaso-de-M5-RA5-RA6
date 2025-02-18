@@ -1,0 +1,11 @@
+@startuml
+participant Objecte1 as o1
+participant Objecte2 as o2
+
+o1 -> o2 : missatge(p1, p2)
+activate o2
+|||
+|||
+|||
+|||
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+left to right direction
+
+' Disposar els actors en columna a l'esquerra
+actor Viatger << ciutadà >> #lightblue;line:lightblue;text:lightblue
+actor Administrador << treballador TMB>>
+actor SistemaBancari #lightblue
+
+Administrador -left-|> Viatger
+
+rectangle "Sistema de Venda de Bitllets de Metro" {
+    usecase "Comprar Bitllet" as UC1 #green
+    usecase "Seleccionar Mètode de Pagament" as UC2 #lightgreen
+    usecase "Processar Pagament" as UC3 #lightblue
+    usecase "Aplicar Descompte de Transport" as UC4
+    usecase "Validar Bitllet" as UC5
+    usecase "Anul·lar Bitllet" as UC6 #red
+    usecase "Consultar Vendes" as UC7
+}
+
+
+Viatger -[#lightgreen]-> UC1
+Viatger --> UC5
+Viatger -[#red]-> UC6
+
+Administrador -[#red]-> UC6
+Administrador --> UC7
+
+UC1 .[#black].> UC2 : <<include>>
+UC2 .[#darkgreen].> UC3 : <<include>>
+UC1 .[#darkblue].> UC4 : <<extend>>
+UC6 .[#darkred].> UC1 : <<extend>>
+
+SistemaBancari -[#darkgreen]-> UC3
+
+@enduml

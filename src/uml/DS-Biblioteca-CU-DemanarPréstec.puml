@@ -1,0 +1,22 @@
+@startuml
+header CU Demanar préstec
+
+actor Usuari
+boundary "Sistema de Biblioteca (Interfície)" as UI
+control "Controlador de Biblioteca" as Control
+entity "Base de Dades" as DB
+control "Gestor de Préstecs" as Gestor
+actor Bibliotecari
+
+Usuari -> UI: Seleccionar llibre per al préstec
+UI -> Control: Enviar sol·licitud de préstec
+Control -> Gestor: Validar disponibilitat
+Gestor -> DB: Consultar estat del llibre
+DB --> Gestor: Retornar disponibilitat
+Gestor -> Bibliotecari: Sol·licitar aprovació
+Bibliotecari -> Gestor: Aprovar/Rebutjar préstec
+Gestor -> DB: Actualitzar estat del préstec
+Gestor -> Control: Retornar estat
+Control -> UI: Mostrar resultat
+UI -> Usuari: Confirmar estat de la sol·licitud
+@enduml

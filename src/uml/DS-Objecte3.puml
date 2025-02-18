@@ -1,0 +1,8 @@
+@startuml
+participant Objecte1 as o1
+|||
+|||
+|||
+|||
+|||
+@enduml
