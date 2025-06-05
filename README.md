@@ -43,3 +43,5 @@ UC6 .[#darkred].> UC1 : <<extend>>
 
 SistemaBancari -[#darkgreen]-> UC3
 @enduml
+
+![Diagrama del sistema](src/img/prueba1.png)
